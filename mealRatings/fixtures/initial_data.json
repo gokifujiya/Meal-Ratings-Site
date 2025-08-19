@@ -1,0 +1,30 @@
+[
+  {
+    "model": "mealRatings.Meal",
+    "pk": 1,
+    "fields": {
+      "name": "Toast with Egg",
+      "description": "Toast with sunnyside up egg",
+      "imageUrl": "1.jpeg",
+      "countryOfOrigin": "England",
+      "typicalMealTime": 1,
+      "dateAdded": "2011-05-05T02:12:01+00:00"
+    }
+  },
+  {
+    "model": "mealRatings.MealRating",
+    "fields": {
+      "meal": 1,
+      "rating": 4.99,
+      "dateOfRating": "2017-11-23T16:51:41+00:00"
+    }
+  },
+  {
+    "model": "mealRatings.MealRating",
+    "fields": {
+      "meal": 1,
+      "rating": 1.02,
+      "dateOfRating": "2010-09-22T03:06:16+00:00"
+    }
+  }
+]

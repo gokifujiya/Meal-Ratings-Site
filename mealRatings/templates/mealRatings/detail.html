@@ -1,0 +1,23 @@
+{% extends "mealRatings/base.html" %}
+{% block title %}{{ meal.name }} — Meal Ratings{% endblock %}
+{% block content %}
+<div class="card" style="max-width:760px;">
+  <img src="{{ IMG_BASE }}{{ meal.imageUrl }}" alt="{{ meal.name }}">
+  <h2>{{ meal.name }}</h2>
+  <p><i>{{ meal.countryOfOrigin }}</i></p>
+  <p>{{ meal.description }}</p>
+  <p>Avg ⭐:
+    {% if meal.avg_rating %}{{ meal.avg_rating|floatformat:2 }} ({{ meal.votes }} votes)
+    {% else %}No ratings yet{% endif %}
+  </p>
+</div>
+
+<h3>Rate this meal</h3>
+<form method="post">
+  {% csrf_token %}
+  <div style="max-width:420px">
+    {{ form.rating }} <span>0–5</span>
+  </div>
+  <button type="submit">Submit Rating</button>
+</form>
+{% endblock %}

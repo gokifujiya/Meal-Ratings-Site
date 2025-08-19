@@ -1,0 +1,29 @@
+<!doctype html><html><head>
+<meta charset="utf-8">
+<title>{% block title %}Meal Ratings{% endblock %}</title>
+<style>
+  body{font-family:system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin:24px}
+  a{color:#0a58ca; text-decoration:none}
+  header, footer{margin:12px 0}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px}
+  .card{border:1px solid #ddd; border-radius:10px; padding:12px}
+  img{max-width:100%; border-radius:8px}
+  small{color:#555}
+</style>
+</head><body>
+<header>
+  <b><a href="{% url 'meals:index' %}">Landing</a></b> |
+  <a href="{% url 'meals:category' 'morning' %}">morning</a> ·
+  <a href="{% url 'meals:category' 'afternoon' %}">afternoon</a> ·
+  <a href="{% url 'meals:category' 'evening' %}">evening</a> ·
+  <a href="{% url 'meals:category' 'recent' %}">recent</a> ·
+  <a href="{% url 'meals:category' 'top' %}">top rated</a>
+  <hr>
+</header>
+
+{% block content %}{% endblock %}
+
+<footer>
+  <hr><small>© 2025 Meal Ratings</small>
+</footer>
+</body></html>

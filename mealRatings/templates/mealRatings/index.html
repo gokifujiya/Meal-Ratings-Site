@@ -1,0 +1,75 @@
+{% extends "mealRatings/base.html" %}
+{% block title %}Landing — Meal Ratings{% endblock %}
+{% block content %}
+
+<h2>Post a new meal</h2>
+<form method="post">
+  {% csrf_token %}
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:760px">
+    <label>Name {{ form.name }}</label>
+    <label>Image (e.g. 7.jpeg) {{ form.imageUrl }}</label>
+    <label>Country {{ form.countryOfOrigin }}</label>
+    <label>Category {{ form.typicalMealTime }}</label>
+    <label style="grid-column:1/-1">Description {{ form.description }}</label>
+  </div>
+  <button type="submit" style="margin-top:8px">Submit</button>
+</form>
+
+<hr>
+
+<h2>Categories</h2>
+
+<h3><a href="{% url 'meals:category' 'morning' %}">morning</a></h3>
+<div class="grid">
+  {% for m in morning %}
+  <a class="card" href="{% url 'meals:detail' m.pk %}">
+    <img src="{{ IMG_BASE }}{{ m.imageUrl }}" alt="{{ m.name }}">
+    <b>{{ m.name }}</b><br>
+    <small>Avg: {% if m.avg_rating %}{{ m.avg_rating|floatformat:2 }} ({{ m.votes }}){% else %}—{% endif %}</small>
+  </a>
+  {% empty %}<p>No items.</p>{% endfor %}
+</div>
+
+<h3><a href="{% url 'meals:category' 'afternoon' %}">afternoon</a></h3>
+<div class="grid">
+  {% for m in afternoon %}
+  <a class="card" href="{% url 'meals:detail' m.pk %}">
+    <img src="{{ IMG_BASE }}{{ m.imageUrl }}" alt="{{ m.name }}">
+    <b>{{ m.name }}</b><br>
+    <small>Avg: {% if m.avg_rating %}{{ m.avg_rating|floatformat:2 }} ({{ m.votes }}){% else %}—{% endif %}</small>
+  </a>
+  {% empty %}<p>No items.</p>{% endfor %}
+</div>
+
+<h3><a href="{% url 'meals:category' 'evening' %}">evening</a></h3>
+<div class="grid">
+  {% for m in evening %}
+  <a class="card" href="{% url 'meals:detail' m.pk %}">
+    <img src="{{ IMG_BASE }}{{ m.imageUrl }}" alt="{{ m.name }}">
+    <b>{{ m.name }}</b><br>
+    <small>Avg: {% if m.avg_rating %}{{ m.avg_rating|floatformat:2 }} ({{ m.votes }}){% else %}—{% endif %}</small>
+  </a>
+  {% empty %}<p>No items.</p>{% endfor %}
+</div>
+
+<h2>Recently added (≤ 90 days)</h2>
+<div class="grid">
+  {% for m in recent %}
+  <a class="card" href="{% url 'meals:detail' m.pk %}">
+    <img src="{{ IMG_BASE }}{{ m.imageUrl }}" alt="{{ m.name }}">
+    <b>{{ m.name }}</b>
+  </a>
+  {% empty %}<p>No items.</p>{% endfor %}
+</div>
+
+<h2>Top rated (≥ 4.5)</h2>
+<div class="grid">
+  {% for m in top %}
+  <a class="card" href="{% url 'meals:detail' m.pk %}">
+    <img src="{{ IMG_BASE }}{{ m.imageUrl }}" alt="{{ m.name }}">
+    <b>{{ m.name }}</b>
+  </a>
+  {% empty %}<p>No items.</p>{% endfor %}
+</div>
+
+{% endblock %}
